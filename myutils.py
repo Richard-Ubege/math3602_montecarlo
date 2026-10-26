@@ -44,6 +44,7 @@ def monte_carlo_integral(f, a, b, n, return_error=False):
         f: the function integral to estimate
         a, b: (respectively) the upper and lower bounds of the function
         n: number of points to randomly generate
+        return_error: if true, error will be returned also
         
     Returns:
         estimate: the sestimated integral
@@ -63,3 +64,6 @@ def monte_carlo_integral(f, a, b, n, return_error=False):
     else:
         return estimate
 
+
+
+    
