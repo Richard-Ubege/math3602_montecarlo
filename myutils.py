@@ -9,7 +9,7 @@ def cos_sq(x):
     '''
     return np.cos(x) ** 2   
 
-def trapezium_rule(f, a, b, n):
+def trapezium_rule(f, a, b, n, true_val=None):
     '''
     Inputs:
         f: the function integral to estimate
@@ -25,4 +25,39 @@ def trapezium_rule(f, a, b, n):
     y = f(x)
     
     area = 0.5 * h * (y[0] + 2 * (np.sum(y[1:-1])) + y[-1])
-    return area
+    
+    if true_val:
+        error = np.abs(true_val - area)
+        return area, error
+    else:
+        return area
+
+
+
+
+def monte_carlo_integral(f, a, b, n):
+    '''Using Monte Carlo Method to approximate the 
+    integral of function f between bounds a and b by 
+    generating n, uniformly distibuted points
+    
+    Inputs:
+        f: the function integral to estimate
+        a, b: (respectively) the upper and lower bounds of the function
+        n: number of points to randomly generate
+        
+    Returns:
+        estimate: the sestimated integral
+        error: the error of the estimate
+    '''
+    
+    x = np.random.uniform(a, b, n)
+    f_x = f(x)
+    
+    sigma_sq = np.var(f_x)
+    
+    estimate = ((b-a) / n) * np.mean(np.sum(f_x))
+    error = (b - a) * np.sqrt(sigma_sq) / np.sqrt(n)
+        
+    return estimate, error
+
+
