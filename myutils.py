@@ -35,7 +35,7 @@ def trapezium_rule(f, a, b, n, true_val=None):
 
 
 
-def monte_carlo_integral(f, a, b, n):
+def monte_carlo_integral(f, a, b, n, return_error=False):
     '''Using Monte Carlo Method to approximate the 
     integral of function f between bounds a and b by 
     generating n, uniformly distibuted points
@@ -58,6 +58,8 @@ def monte_carlo_integral(f, a, b, n):
     estimate = ((b-a) / n) * np.mean(np.sum(f_x))
     error = (b - a) * np.sqrt(sigma_sq) / np.sqrt(n)
         
-    return estimate, error
-
+    if return_error:
+        return estimate, error
+    else:
+        return estimate
 
