@@ -21,7 +21,7 @@ def trapezium_rule(f, a, b, n, return_error, true_val=None):
     '''
     
     x = np.linspace(a, b, n)
-    h = (b - a) / n
+    h = (b - a) / (n-1)
     y = f(x)
     
     area = 0.5 * h * (y[0] + 2 * (np.sum(y[1:-1])) + y[-1])
